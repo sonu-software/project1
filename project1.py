@@ -1,4 +1,4 @@
-import os
+tyimport os
 import subprocess
 import time
 import streamlit as st
@@ -17,7 +17,7 @@ def security_code():
         st.write(content)
 
 if __name__=="__main__":
-    take_screenshot()
+    security_code()
 
 
 
