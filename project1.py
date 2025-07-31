@@ -1,4 +1,4 @@
-tyimport os
+import os
 import subprocess
 import time
 import streamlit as st
