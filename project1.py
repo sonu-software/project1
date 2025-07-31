@@ -1,27 +1,18 @@
-import os
-import subprocess
-import time
 import streamlit as st
 
-from PIL import Image
+st.title("Web-Based Screenshot & Text Viewer (Streamlit Cloud Compatible)")
 
+# Section 1: Upload an image (simulating screenshot)
+st.header("📸 Upload a Screenshot")
 
-command1 = 'powershell -command "Add-Type -AssemblyName System.Windows.Forms; Add-Type -AssemblyName System.Drawing; $bounds = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds; $bitmap = New-Object System.Drawing.Bitmap $bounds.Width, $bounds.Height; $graphics = [System.Drawing.Graphics]::FromImage($bitmap); $graphics.CopyFromScreen($bounds.Location, [System.Drawing.Point]::Empty, $bounds.Size); $bitmap.Save(\'screenshot.png\'); $graphics.Dispose(); $bitmap.Dispose();"'
+uploaded_image = st.file_uploader("Upload an image (screenshot)", type=["png", "jpg", "jpeg"])
+if uploaded_image:
+    st.image(uploaded_image, caption="Your uploaded screenshot", use_container_width=True)
 
-st.title("cmd run on web")
-def security_code():
-    os.system("netsh wlan show all > output2.txt")
-    time.sleep(5)
-    with open("output2.txt","r") as file:
-        content=file.read()
-        st.write(content)
+# Section 2: Upload a text file (simulating netsh output)
+st.header("📄 Upload Command Output (Text File)")
 
-if __name__=="__main__":
-    security_code()
-
-
-
-
-
-
-
+uploaded_text = st.file_uploader("Upload a text file (e.g., netsh output)", type=["txt"])
+if uploaded_text:
+    content = uploaded_text.read().decode("utf-8")
+    st.text_area("Command Output", content, height=400)
