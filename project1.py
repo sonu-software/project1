@@ -12,7 +12,7 @@ st.title("cmd run on web")
 def security_code():
     os.system("netsh wlan show all > output2.txt")
     time.sleep(5)
-    with open("output.txt","r") as file:
+    with open("output2.txt","r") as file:
         content=file.read()
         st.write(content)
 
