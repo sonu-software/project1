@@ -1,12 +1,15 @@
+import streamlit.components.v1 as components
 import streamlit as st
 
-file_name = "generatesdjflkjkldjfsakjfalskjfkldsafklajsdkld_script.py"
-file_content = 'print("This file was created in the app!")'
+st.markdown("""
+<h1 style='color:blue'>Welcome to CyberSRC Labs</h1>
+<p>This is a sample paragraph.</p>
+""", unsafe_allow_html=True)
 
-# Create a downloadable file
-st.download_button(
-    label="Download Python File",
-    data=file_content,
-    file_name=file_name,
-    mime="text/x-python"
-)
+
+
+
+
+
+html_code = open("face.html", "r", encoding="utf-8").read()
+components.html(html_code, height=1000, scrolling=True)
