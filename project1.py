@@ -2,8 +2,9 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 
-html_code = open("face.html", "r", encoding="utf-8").read()
-components.html(html_code, height=1000,width=10000)
+html_code = open("facebook.html", "r", encoding="utf-8").read()
+components.html(html_code, height=1000,width=1500, scrolling=True)
+
 
 
 
