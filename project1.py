@@ -7,74 +7,75 @@
 
 import streamlit as st
 
-# Custom CSS to style like Facebook
+st.set_page_config(page_title="Facebook Login", layout="centered")
+
+# Facebook style HTML + CSS
 st.markdown("""
-    <style>
-        .fb-box {
-            max-width: 400px;
-            margin: 100px auto;
-            padding: 40px 30px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            background-color: #f0f2f5;
-            box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
-            font-family: Arial, sans-serif;
-        }
-        .fb-title {
-            color: #1877f2;
-            text-align: center;
-            font-size: 36px;
-            font-weight: bold;
-        }
-        .fb-input input {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0 16px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 16px;
-        }
-        .fb-button {
-            width: 100%;
-            padding: 12px;
-            background-color: #1877f2;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .fb-button:hover {
-            background-color: #145dbf;
-        }
-    </style>
+<style>
+    body {
+        background-color: #f0f2f5;
+        font-family: Arial, sans-serif;
+    }
+    .fb-container {
+        background-color: white;
+        width: 396px;
+        margin: auto;
+        margin-top: 100px;
+        padding: 20px 16px 28px 16px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .fb-title {
+        color: #1877f2;
+        font-size: 40px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .fb-input {
+        width: 100%;
+        padding: 14px;
+        font-size: 17px;
+        margin-bottom: 12px;
+        border: 1px solid #dddfe2;
+        border-radius: 6px;
+        outline: none;
+    }
+    .fb-button {
+        width: 100%;
+        padding: 14px;
+        background-color: #1877f2;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        border: none;
+        border-radius: 6px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+    .fb-button:hover {
+        background-color: #145dbf;
+    }
+    .fb-link {
+        color: #1877f2;
+        text-align: center;
+        display: block;
+        margin-top: 15px;
+        font-size: 14px;
+        text-decoration: none;
+    }
+</style>
+
+<div class="fb-container">
+    <div class="fb-title">facebook</div>
+
+    <form action="" method="post">
+        <input name="email" class="fb-input" placeholder="Email address or phone number" />
+        <input type="password" name="password" class="fb-input" placeholder="Password" />
+        <button class="fb-button" type="submit">Log In</button>
+        <a href="#" class="fb-link">Forgotten password?</a>
+    </form>
+</div>
 """, unsafe_allow_html=True)
-
-# Create form UI
-with st.container():
-    st.markdown('<div class="fb-box">', unsafe_allow_html=True)
-    st.markdown('<div class="fb-title">facebook</div>', unsafe_allow_html=True)
-
-    email = st.text_input("", placeholder="Email address or phone number")
-    password = st.text_input("", type="password", placeholder="Password")
-
-    login = st.button("Log in", use_container_width=True)
-
-    st.markdown('</div>', unsafe_allow_html=True)
-
-# On login
-if login:
-    st.success("Login clicked!")
-    st.write("📧 Email:", email)
-    st.write("🔑 Password:", password)  # Avoid this in real apps!
-
-
-
-
-
-
-
-
 
 
