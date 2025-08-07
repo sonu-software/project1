@@ -94,3 +94,4 @@ html_content = f"""
 
 # Display inside Streamlit
 components.html(html_content, height=700, scrolling=False)
+
