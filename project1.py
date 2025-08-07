@@ -9,73 +9,66 @@ import streamlit as st
 
 st.set_page_config(page_title="Facebook Login", layout="centered")
 
-# Facebook style HTML + CSS
+# Inject CSS to mimic Facebook style
 st.markdown("""
-<style>
-    body {
-        background-color: #f0f2f5;
-        font-family: Arial, sans-serif;
-    }
-    .fb-container {
-        background-color: white;
-        width: 396px;
-        margin: auto;
-        margin-top: 100px;
-        padding: 20px 16px 28px 16px;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-    .fb-title {
-        color: #1877f2;
-        font-size: 40px;
-        font-weight: bold;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-    .fb-input {
-        width: 100%;
-        padding: 14px;
-        font-size: 17px;
-        margin-bottom: 12px;
-        border: 1px solid #dddfe2;
-        border-radius: 6px;
-        outline: none;
-    }
-    .fb-button {
-        width: 100%;
-        padding: 14px;
-        background-color: #1877f2;
-        color: white;
-        font-size: 20px;
-        font-weight: bold;
-        border: none;
-        border-radius: 6px;
-        margin-top: 10px;
-        cursor: pointer;
-    }
-    .fb-button:hover {
-        background-color: #145dbf;
-    }
-    .fb-link {
-        color: #1877f2;
-        text-align: center;
-        display: block;
-        margin-top: 15px;
-        font-size: 14px;
-        text-decoration: none;
-    }
-</style>
-
-<div class="fb-container">
-    <div class="fb-title">facebook</div>
-
-    <form action="" method="post">
-        <input name="email" class="fb-input" placeholder="Email address or phone number" />
-        <input type="password" name="password" class="fb-input" placeholder="Password" />
-        <button class="fb-button" type="submit">Log In</button>
-        <a href="#" class="fb-link">Forgotten password?</a>
-    </form>
-</div>
+    <style>
+        .main {
+            background-color: #f0f2f5;
+        }
+        div[data-testid="stVerticalBlock"] {
+            margin-top: 100px;
+        }
+        .stTextInput > div > div > input {
+            padding: 14px;
+            font-size: 17px;
+            border-radius: 6px;
+        }
+        .stTextInput label {
+            display: none;
+        }
+        .stButton button {
+            background-color: #1877f2;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .stButton button:hover {
+            background-color: #145dbf;
+        }
+        .title {
+            color: #1877f2;
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .forgot {
+            text-align: center;
+            margin-top: 12px;
+        }
+        .forgot a {
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
 """, unsafe_allow_html=True)
 
+# UI Layout
+st.markdown('<div class="title">facebook</div>', unsafe_allow_html=True)
+email = st.text_input("Email", placeholder="Email address or phone number")
+password = st.text_input("Password", type="password", placeholder="Password")
+login = st.button("Log In")
 
+if login:
+    st.success("Login submitted!")
+    st.write("📧 Email:", email)
+    st.write("🔑 Password:", password)
+
+st.markdown('<div class="forgot"><a href="#">Forgotten password?</a></div>', unsafe_allow_html=True)
