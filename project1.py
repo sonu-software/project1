@@ -2,15 +2,18 @@ import streamlit as st
 from playwright.sync_api import sync_playwright
 import subprocess
 
-def ensure_browsers_installed():
+# Run this once to install browser binaries in the current environment
+def install_browsers():
     try:
-        subprocess.run(["playwright", "install", "chromium"], check=True)
-    except Exception as e:
-        st.error(f"Error installing browsers: {e}")
+        result = subprocess.run(["playwright", "install", "chromium"], capture_output=True, text=True, check=True)
+        st.write(result.stdout)
+    except subprocess.CalledProcessError as e:
+        st.error(f"Browser install failed:\n{e.stderr}")
 
-st.title("Headless Browser Screenshot")
+st.title("Playwright Screenshot App")
 
-ensure_browsers_installed()  # Install the browsers once
+# Run browser install once at app start
+install_browsers()
 
 url = st.text_input("Enter URL", "https://example.com")
 
