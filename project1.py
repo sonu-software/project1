@@ -9,9 +9,7 @@ st.title("🎨 Text-to-Image Generator (SDXL via Hugging Face)")
 # Hugging Face model to use
 MODEL = "stabilityai/stable-diffusion-xl-base-1.0"
 API_URL = f"https://api-inference.huggingface.co/models/{MODEL}"
-headers = {
-    "Authorization": f"Bearer {st.secrets['hf_token']}"
-}
+headers = {"Authorization": f"Bearer {st.secrets['hf_token']}"}
 
 def generate_image(prompt):
     payload = {"inputs": prompt}
@@ -32,3 +30,4 @@ if st.button("Generate Image"):
         img = generate_image(prompt)
         if img:
             st.image(img, caption=prompt, use_column_width=True)
+
