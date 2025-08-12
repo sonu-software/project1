@@ -1,15 +1,28 @@
+# app.py
 import streamlit as st
-from playwright.sync_api import sync_playwright
+from PIL import Image, ImageDraw, ImageFont
+import textwrap
 
-st.title("Open a Link using Playwright in Streamlit")
+st.title("Text-to-Image Generator (Mock)")
 
-url = st.text_input("Enter URL to open", "https://example.com")
+prompt = st.text_input("Enter your prompt", "A cute cat sitting on the moon.")
 
-if st.button("Open Link"):
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
-        page.goto(url)
-        title = page.title()
-        st.write(f"Page title: {title}")
-        browser.close()
+if st.button("Generate Image"):
+    # Create a blank image
+    img = Image.new("RGB", (512, 512), color=(255, 255, 255))
+    draw = ImageDraw.Draw(img)
+
+    # Wrap the prompt text
+    wrapper = textwrap.TextWrapper(width=40)
+    wrapped_text = wrapper.fill(text=prompt)
+
+    # Use a default font
+    try:
+        font = ImageFont.truetype("arial.ttf", 20)
+    except:
+        font = ImageFont.load_default()
+
+    # Draw the prompt text onto the image
+    draw.text((10, 10), wrapped_text, fill="black", font=font)
+
+    st.image(img, caption="Generated image from prompt")
